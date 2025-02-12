@@ -122,7 +122,17 @@ body {
         padding: 10px;
         font-size: 20px;
         border-radius: 15px;
+        border: 2px solid white;
     }
+    .button {
+        bottom: 40px;
+    }
+    @keyframes shrinkAndMove {
+        100% { transform: scale(0.8) translateY(-500px); }
+    }    
+}
+
+@media (max-width: 400px) {
     @keyframes shrinkAndMove {
         100% { transform: scale(0.8) translateY(-400px); }
     }    

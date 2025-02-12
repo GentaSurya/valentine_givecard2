@@ -49,3 +49,22 @@ setTimeout(() => {
     audio.muted = false; // Unmute
     audio.play().catch(error => console.log("Playback failed:", error));
 }, 2000);
+
+document.addEventListener("click", function(event) {
+    
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    
+    heart.style.left = `${event.clientX - 20}px`;  
+    heart.style.top = `${event.clientY - 20}px`;
+
+    
+    document.body.appendChild(heart);
+
+   
+    setTimeout(() => {
+        heart.remove();
+    }, 2000);
+});
+

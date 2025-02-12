@@ -88,6 +88,33 @@ body {
     z-index: -1;
 }
 
+.heart_pop {
+    position: absolute;
+    width: 40px;  
+    height: 40px;
+    background-image: url('heart2.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none; 
+    animation: floatUp 2s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-150px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5);
+    }
+}
+
 @keyframes floatUp {
     0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-100vh) scale(1.5); }

@@ -24,34 +24,8 @@
         <button class="button" onclick="location.href='index.html'">Back</button>
     </div>
     
-    <script src="script.js"></script>
+    <script src="card.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
-    <script>
-        setTimeout(() => {
-            var typed = new Typed(".text", {
-            strings: ["Will you be my Valentine? Although we have been going together for only a few months, I can honestly say that I care very much for you. I care so much that I am certain what I feel is love. I miss you when I am not with you, and when we are together I am happy."],
-            typeSpeed: 70,
-        });
-        }, 3000);   
-        function createHeart() {
-        let heart = document.createElement("div");
-        heart.classList.add("heart");
-
-        let size = Math.random() * 40 + 20; 
-        heart.style.width = `${size}px`;
-        heart.style.height = `${size}px`;
-
-        heart.style.left = `${Math.random() * 100}vw`; 
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove(); 
-        }, 6000);
-        }
-
-        setInterval(createHeart, 500); 
-    </script>
 
 </body>
 </html>

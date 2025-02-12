@@ -125,16 +125,16 @@ body {
         border: 2px solid white;
     }
     .button {
-        bottom: 40px;
+        bottom: 50px;
     }
     @keyframes shrinkAndMove {
-        100% { transform: scale(0.8) translateY(-500px); }
+        100% { transform: scale(0.8) translateY(-480px); }
     }    
 }
 
 @media (max-width: 400px) {
     @keyframes shrinkAndMove {
-        100% { transform: scale(0.8) translateY(-400px); }
+        100% { transform: scale(0.8) translateY(-380px); }
     }    
 }
 

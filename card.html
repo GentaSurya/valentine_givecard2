@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Valentine Card ❤️">
+    <meta property="og:description" content="A special Valentine's Day card for you!">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="icon" href="icon/heart.png">
+    <title>Happy Valentine</title>
+    <link rel="stylesheet" href="card.css">
+</head>
+
+<body>
+    <audio id="myAudio" muted>
+        <source src="sound/key sound.mp3" type="audio/mpeg">
+    </audio>
+        
+    <div class="container">
+        <div class="card">
+                <h1 class="title">Happy Valentine</h1>
+                <h1 class="name" id="displayName"></h1>
+        </div>
+        <div class="paraf">
+            <p class="text"></p>
+        </div>
+        <button class="button" onclick="location.href='index.html'">Back</button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+        setTimeout(() => {
+            var typed = new Typed(".text", {
+            strings: ["Will you be my Valentine? Although we have been going together for only a few months, I can honestly say that I care very much for you. I care so much that I am certain what I feel is love. I miss you when I am not with you, and when we are together I am happy."],
+            typeSpeed: 70,
+        });
+        }, 3000);   
+        function createHeart() {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+
+        let size = Math.random() * 40 + 20; 
+        heart.style.width = `${size}px`;
+        heart.style.height = `${size}px`;
+
+        heart.style.left = `${Math.random() * 100}vw`; 
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove(); 
+        }, 6000);
+        }
+
+        setInterval(createHeart, 500); 
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Valentine Card ❤️">
+    <meta property="og:description" content="A special Valentine's Day card for you!">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <title>Valentine Card</title>
+    <link rel="icon" type="image/png" href="icon/heart.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <audio id="myAudio" muted loop>
+        <source src="sound/cat sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        <div class="title">SIAPA KAMU?</div>
+        <div class="header">VALENTINE GIVE CARD (NOT FOR SINGLE)</div>
+        <input type="text" class="name" autofocus oninput="limitTextWidth(event)" aria-label="Enter your name" placeholder="NAME">
+        <button id="nextButton" onclick="saveNameAndRedirect()">Next</button>
+
+        <img src="gif/cat-love.gif" alt="White Cat" class="first_cat" onerror="this.onerror=null; this.alt='Cat image not available';">
+    </div>
+    
+    <script src="script.js"></script>
+
+    <script>
+        setTimeout(() => {
+            let audio = document.getElementById("myAudio");
+            audio.muted = false;
+            audio.play().catch(error => console.log("Playback failed:", error));
+        }, 2000);
+    </script>
+    
+</body>
+</html>

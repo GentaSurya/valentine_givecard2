@@ -1,95 +1,203 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const storedName = localStorage.getItem("username");
-    if (storedName) {
-        document.getElementById("displayName").textContent = storedName;
-    }
-});
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
-setTimeout(() => {
-    var typed = new Typed(".text", {
-        strings: [
-            "Will you be my Valentine? Although we have been going together for only a few months, I can honestly say that I care very much for you. I care so much that I am certain what I feel is love. I miss you when I am not with you, and when we are together I am happy."
-        ],
-        typeSpeed: 70,
-    });
-}, 3000);
-
-function createHeart() {
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-
-    let size = Math.random() * 40 + 20;
-    heart.style.width = `${size}px`;
-    heart.style.height = `${size}px`;
-    heart.style.left = `${Math.random() * 100}vw`;
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
+body {
+    background: linear-gradient(180deg, rgb(200, 0, 110), rgb(255, 61, 61));
+    height: 100vh;
+    margin: 0;
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+    overflow: hidden;
+    touch-action: none;
 }
 
-setInterval(createHeart, 500);
+.container {    
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-    let isDragging = false;
-    const maxPops = 50;
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+    animation: shrinkAndMove 1.5s ease-in-out forwards;
+    animation-delay: 1s; 
+}
 
-    function createPop(x, y) {
-        if (document.querySelectorAll(".pop").length >= maxPops) return;
+.title, .name {
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 2em;
+    color: rgb(200, 0, 110);
+    text-align: center;
+}
 
-        let pop = document.createElement("div");
-        pop.classList.add("pop");
+.name::first-letter{
+    text-transform: uppercase;
+}
 
-        let size = Math.random() * 20 + 80;
-        let rotate = Math.random() * 60 - 30;
+.typed-cursor {
+    display: none;
+}
 
-        pop.style.width = `${size}px`;
-        pop.style.height = `${size}px`;
-        pop.style.transform = `rotate(${rotate}deg)`;
-        pop.style.left = `${x - size / 2}px`;
-        pop.style.top = `${y - size / 2}px`;
+.button {
+    border-radius: 6px;
+    border: 2px white solid;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    cursor: pointer;
+    height: 40px;
+    width: 80px;
+}
 
-        document.body.appendChild(pop);
+.paraf {
+    opacity: 0; 
+    transition: opacity 1s ease-in-out;
+    animation: fadeIn 1s forwards;
+    animation-delay: 3s;
+    margin: 90px;
+}
 
-        setTimeout(() => {
-            pop.classList.add("pop_effect");
-        }, 1500);
+.text {
+    padding: 15px;
+    border-radius: 20px;
+    border: 3px solid white;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+}
 
-        setTimeout(() => {
-            pop.remove();
-        }, 2000);
+.heart {
+    position: absolute;
+    bottom: -50px;
+    background-image: url('icon/heart2.png');
+    background-size: cover;
+    opacity: 1;
+    animation: floatUp 6s linear forwards;
+    z-index: -1;
+}
+
+.pop {
+    position: absolute;
+    width: 40px;  
+    height: 40px;
+    background-image: url('icon/heart2.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none; 
+    animation: floatUpPop 2s linear forwards;
+}
+
+.pop_effect {
+    animation: popAnimation 0.3s ease-out forwards;
+}
+
+@keyframes floatUpPop {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
-
-    function getTouchPosition(event) {
-        return event.touches
-            ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
-            : { x: event.clientX, y: event.clientY };
+    70% {
+        opacity: 1;
+        transform: scale(1.2);
     }
-
-    function handleStart(event) {
-        event.preventDefault();
-        isDragging = true;
-        let { x, y } = getTouchPosition(event);
-        createPop(x, y);
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
     }
+}
 
-    function handleMove(event) {
-        if (!isDragging) return;
-        let { x, y } = getTouchPosition(event);
-        createPop(x, y);
+@keyframes popAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
     }
-
-    function handleEnd() {
-        isDragging = false;
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
     }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
 
-    document.addEventListener("mousedown", handleStart);
-    document.addEventListener("mousemove", handleMove);
-    document.addEventListener("mouseup", handleEnd);
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.5); }
+}
 
-    document.addEventListener("touchstart", handleStart);
-    document.addEventListener("touchmove", handleMove);
-    document.addEventListener("touchend", handleEnd);
-});
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shrinkAndMove {
+    0% { transform: scale(1) translateX(0); }
+    100% { transform: scale(0.7) translateY(-500px); }
+} 
+
+@media (max-width: 600px) {
+    html, body {
+        overflow: hidden;
+    }
+    .card {
+        border-radius: 13px;
+        height: 12vw;
+    }
+    .title, .name {
+        font-size: 23px;
+    }
+    .paraf {
+        margin: 40px;
+    }
+    .text {
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 15px;
+        border: 2px solid white;
+    }
+    .button {
+        bottom: 50px;
+    }
+    @keyframes shrinkAndMove {
+        100% { transform: scale(0.8) translateY(-480px); }
+    }    
+}
+
+@media (max-width: 400px) {
+    @keyframes shrinkAndMove {
+        100% { transform: scale(0.8) translateY(-380px); }
+    }    
+}
+
+@media screen and (orientation: landscape) and (max-height: 700px) {
+    @keyframes shrinkAndMove {
+        100% { transform: scale(0.80) translateY(-180px); }
+    }
+    .card {
+        top: 40%;
+    }
+    .title, .name {
+        font-size: 20px;
+    }
+    .text {
+        font-size: 17px;
+    }
+    .button {
+        bottom: 40px;
+    }
+}

@@ -6,16 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 setTimeout(() => {
-    document.getElementById("myAudio").play();
-}, 2000);
-
-setTimeout(() => {
-    let audio = document.getElementById("myAudio");
-    audio.muted = false;
-    audio.play().catch(error => console.log("Playback failed:", error));
-}, 2000);
-
-setTimeout(() => {
     var typed = new Typed(".text", {
         strings: [
             "Will you be my Valentine? Although we have been going together for only a few months, I can honestly say that I care very much for you. I care so much that I am certain what I feel is love. I miss you when I am not with you, and when we are together I am happy."
